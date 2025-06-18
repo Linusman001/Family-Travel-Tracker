@@ -53,7 +53,7 @@ app.post("/add", async (req, res) => {
       "SELECT country_code FROM countries WHERE LOWER(country_name) LIKE '%' || $1 || '%';",
       [input.toLowerCase()]
     );
-    if (result.rows === 0) {
+    if (result.rows.length === 0) {
       const countries = await checkVisited()
       return res.render("index.ejs", {
         users: users,
